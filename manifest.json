@@ -5,7 +5,6 @@
   "description": "This extension adds some buttons with predefined/calculated release dates/times to the HaloPSA SLA Hold Auto-Release modal.",
   "author": "Kevin Wiblin",
   "homepage_url": "https://github.com/SandTugBoat85/reimagined-octo-lamp",
-	"update_url": "https://cdn.wiblin.net/chrome/halopsa/updates.xml",
   "icons": {
     "16": "icon.png",
     "32": "icon.png",
