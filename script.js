@@ -56,7 +56,7 @@ function checkDOM(Mutations) {
   }
 }
 
-// Function to make a button and the functionality
+// Function to make a button and the functionality of said button
 function makeButton(modal, buttonName, buttonDate) {
   const sourceButton = modal.querySelector('input[type="submit"][value="Set"]');
   const sourceStyle = window.getComputedStyle(sourceButton);
@@ -67,6 +67,8 @@ function makeButton(modal, buttonName, buttonDate) {
     const date = buttonDate();
     modal.querySelector('#input-field-for-sla_autorelease_datetimeundefined').click();
     setTimeout(() => {
+      const regionCode = navigator.language;
+      console.log(regionCode);
       const timeField = document.querySelector('.rc-time-picker-panel-input');
       timeField.focus();
       document.execCommand('selectAll', false, null);
@@ -76,10 +78,10 @@ function makeButton(modal, buttonName, buttonDate) {
         const a = modal.querySelector('#input-field-for-sla_autorelease_date');
         a.focus();
         a.click();
-
         setTimeout(() => {
           console.log(date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }));
-          const ds = document.querySelector(`[aria-label$="${date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}"]`);
+          console.log(date.toLocaleDateString(regionCode, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }));
+          const ds = document.querySelector(`[aria-label$="${date.toLocaleDateString(regionCode, { day: 'numeric', month: 'long', year: 'numeric' })}"]`);
           console.log(ds);
           ds.click();
           const set = modal.querySelector('input[type="submit"][value="Set"]');
