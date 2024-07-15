@@ -6,6 +6,12 @@
   "author": "Kevin Wiblin",
   "homepage_url": "https://github.com/SandTugBoat85/reimagined-octo-lamp",
 	"update_url": "https://cdn.wiblin.net/chrome/halopsa/updates.xml",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "content_scripts": [ {
       "all_frames": true,
       "exclude_globs": [  ],
