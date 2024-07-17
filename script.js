@@ -72,7 +72,7 @@ function makeButton(modal, buttonName, buttonDate) {
       const timeField = document.querySelector('.rc-time-picker-panel-input');
       timeField.focus();
       document.execCommand('selectAll', false, null);
-      document.execCommand('insertText', false, date.toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric' }));
+      document.execCommand('insertText', false, date.toLocaleTimeString(undefined, { hourCycle: "h24", hour: 'numeric', minute: 'numeric' }));
       document.querySelector('.rc-time-picker-panel').remove();
       setTimeout(() => {
         const a = modal.querySelector('#input-field-for-sla_autorelease_date');
