@@ -14,6 +14,12 @@ function checkDOM(Mutations) {
           modal.querySelector('.details-group').append(buttonDiv);
           modal.querySelector('.details-group').style.display = 'flex';
           modal.querySelector('.details-group').style.justifyContent = 'space-between';
+          let Moz = new Date();
+          Moz.setDate(Moz.getDate() + 1);
+          mozLong = Moz.toLocaleDateString(undefined, { weekday: 'long' });
+          console.log(mozLong);
+
+          //         makeButton(modal, '8AM ' + mozLong, () => {
           makeButton(modal, '8AM Tomorrow', () => {
             let date = new Date();
             date.setDate(date.getDate() + 1);
@@ -28,7 +34,7 @@ function checkDOM(Mutations) {
           });
           makeButton(modal, '8AM Monday', () => {
             let date = new Date();
-            date.setDate(date.getDate() + 1 + date.getDay());
+            date.setDate(date.getDate() + (((1 + 7 - date.getDay()) % 7) || 7));
             date.setHours(8);
             date.setMinutes(0);
             return date;
@@ -40,7 +46,7 @@ function checkDOM(Mutations) {
           });
           makeButton(modal, '8AM Friday', () => {
             let date = new Date();
-            date.setDate(date.getDate() + 5 + date.getDay());
+            date.setDate(date.getDate() + (5 - date.getDay() + 7) % 7);
             date.setHours(8);
             date.setMinutes(0);
             return date;
@@ -71,15 +77,17 @@ function makeButton(modal, buttonName, buttonDate) {
       console.log(regionCode);
       const timeField = document.querySelector('.rc-time-picker-panel-input');
       timeField.focus();
+      timeField.click();
       document.execCommand('selectAll', false, null);
-      document.execCommand('insertText', false, date.toLocaleTimeString(undefined, { hourCycle: "h24", hour: 'numeric', minute: 'numeric' }));
+      document.execCommand('insertText', false, date.toLocaleTimeString(regionCode, { hourCycle: "h24", hour: '2-digit', minute: '2-digit' }));
+      console.log(date.toLocaleTimeString(regionCode, { hourCycle: "h24", hour: '2-digit', minute: '2-digit' }));
       document.querySelector('.rc-time-picker-panel').remove();
       setTimeout(() => {
         const a = modal.querySelector('#input-field-for-sla_autorelease_date');
         a.focus();
         a.click();
         setTimeout(() => {
-          console.log(date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' }));
+          console.log(date.toLocaleDateString(regionCode, { year: 'numeric', month: 'long', day: 'numeric' }));
           console.log(date.toLocaleDateString(regionCode, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }));
           const ds = document.querySelector(`[aria-label$="${date.toLocaleDateString(regionCode, { day: 'numeric', month: 'long', year: 'numeric' })}"]`);
           console.log(ds);
